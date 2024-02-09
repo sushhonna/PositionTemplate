@@ -1,0 +1,689 @@
+<xd-component-container>
+<div class="fitment-search-container container-flued">
+  <div class="card fitment-search-card">
+    <div class="card-header">
+      <div class="row">
+        <div id="candidateId" class="col-11">
+          Position Template
+        </div>
+        <div id="compStatus" class="col-1">
+          <img class="cross-close-img float-right" [routerLink]="['/FTcompConfig/','approver']"
+            skipLocationChange=true src="../../../../assets/img/CloseButton.svg" />
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body  pb-0">
+      <div class="row">
+        <div id="fixedPay" class="col-4">
+          <h4 class="card-subtitle text-muted candid-lbl ">Candidate ID :&nbsp; </h4>
+          <h4 class="card-subtitle candid-value-lbl">{{candId}}</h4>
+        </div>
+        <div id="fixedPay" class="col-4">          
+        </div>
+        <div  class="col-1" id="fixedPay"></div>
+        <div id="fixedPay" class="col-3" *ngIf="configType=='lateral'">
+          <h4 class="card-subtitle candid-value-lbl candid-lblversion ">{{CompPtData.versionDetails.TotalNoOfPTVersion}}</h4>
+          <h4 class="card-subtitle text-muted candid-lblversion ">Total no of Version :&nbsp; </h4>
+         
+          </div>
+      </div>
+
+      <div class="row">
+        <div id="fixedPay" class="col-12">
+          <h4 class="card-subtitle text-muted candid-lbl version-lbl float-right">
+          </h4>
+          <h4></h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="fixedPay" class="col-4">
+          <h4 class="card-subtitle text-muted candid-lbl">Position Status :&nbsp; </h4>
+          <h4 class="card-subtitle candid-value-lbl">{{CompPtData.versionDetails.PTstatus}}</h4>
+        </div>
+
+        <div id="fixedPay" class="col-4">
+          
+        </div>
+        <div id="fixedPay" class="col-1">
+          
+        </div>
+        <div id="fixedPay" class="col-3">         
+          <h4 class="card-subtitle candid-value-lbl candid-lblversion ">{{CompPtData.versionDetails.PTVersion}}</h4>
+          <h4 class="card-subtitle text-muted candid-lblversion ">Version :&nbsp; </h4>
+         
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="validaions-msg" *ngIf="validationMsg.length>0">
+            <label class="validation-lbl" *ngFor="let msg of validationMsg">{{msg}}</label>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <!-- <hr class="style7"> -->  
+    <form (ngSubmit)="true" class="" #confFitmentForm="ngForm" novalidate>
+      <div class="card-body">
+        <div class="accordion" id="accordionExample">
+
+          <div id="headingCD">
+            <h4 class="card-subtitle card-subtitle-fitment text-muted accord" data-toggle="collapse"
+              data-target="#collapseCD" aria-expanded="true" aria-controls="collapseCD">
+              Candidate Details
+            </h4>
+          </div>
+          <hr class="style7">
+          <div id="collapseCD" class="collapse show in" aria-labelledby="headingCD">
+            <div class="card-body pb-0">
+              <div class="row">
+                <div class="row">
+
+                  <div id="name" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="name">Candidate Name</label>
+                      <input type="text" id="name" name="name" [(ngModel)]="CompPtData.cndName" disabled
+                        class="form-control" aria-label="fixedPay">
+                    </div>
+                  </div>
+
+                  <div id="dob" *ngIf="configType=='lateral'" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="dob">DOB</label>
+                      <input type="text" id="dob" name="dob" [value]="CompPtData.cndDOB | date : 'dd-MM-yyyy'" disabled
+                        class="form-control" aria-label="tcc">
+                    </div>
+                  </div>
+                  <div id="sublevel" *ngIf="configType=='lateral'" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="sublevel"> Sub Level</label>
+                      <input type="text" id="sublevel" name="sublevel" [(ngModel)]="CompPtData.cndSublevel" disabled
+                        class="form-control" aria-label="fixedPay">
+                    </div>
+                  </div>
+                  <div id="crlevel" [ngClass]="(configType =='lateral') ? 'col-3 textbox ':'col-3 textbox pr-0'">
+                    <div class="form-group">
+                      <label for="crlevel">Career Level</label>
+                      <input type="text" id="crlevel" name="crlevel" [(ngModel)]="CompPtData.cndLevel" disabled
+                        class="form-control" aria-label="tep">
+                    </div>
+                  </div>
+
+                  <div id="sll" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="sll">SLL</label>
+                      <input type="text" id="sll" name="sll" [(ngModel)]="CompPtData.cndSLL" disabled
+                        class="form-control" aria-label="fixedPay">
+                    </div>
+                  </div>
+                  <div id="location" [ngClass]="(configType =='exec') ? 'col-3 textbox ':'col-3 textbox pr-0'">
+                    <div class="form-group">
+                      <label for="location">Location</label>
+                      <input type="text" id="location" name="location" [(ngModel)]="CompPtData.cndLocation" disabled
+                        class="form-control" aria-label="tcc">
+                    </div>
+                  </div>
+                  <div id="source" *ngIf="configType=='lateral'" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="source">Source</label>
+                      <input type="text" id="source" name="source" [(ngModel)]="CompPtData.cndSource" disabled
+                        class="form-control" aria-label="tep">
+                    </div>
+                  </div>
+                  <div id="sourceNm" *ngIf="configType=='lateral'" class="col-3 textbox">
+                    <div class="form-group">
+                      <label for="sourceNm"> Source Name</label>
+                      <input type="text" id="sourceNm" name="sourceNm" [(ngModel)]="CompPtData.cndSourceName" disabled
+                        class="form-control" aria-label="tep">
+                    </div>
+                  </div>
+
+                  <div id="rsd" *ngIf="configType=='lateral'" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="rsd">Resume Submission Date</label>
+                      <input type="text" id="rsd" name="rsd" [value]="CompPtData.cndResumeSubDate | date : 'dd-MM-yyyy'" [(ngModel)]="ngMocndResumeSubDate"
+                        disabled class="form-control" aria-label="tep">
+                    </div>
+                  </div>
+
+                  <div id="deal" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="deal">Deal</label>
+                      <input type="text" id="deal" name="deal" [(ngModel)]="CompPtData.cndDeal" disabled
+                        class="form-control" aria-label="fixedPay">
+                    </div>
+                  </div>
+                  <div id="arex" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="arex">Total AREX</label>
+                      <input type="text" id="arex" name="arex" [(ngModel)]="CompPtData.cndAREX" disabled
+                        class="form-control" aria-label="tcc">
+                    </div>
+                  </div>
+                  <div id="srNo" [ngClass]="(configType =='lateral') ? 'col-3 textbox ':'col-3 textbox pr-0'">
+                    <div class="form-group">
+                      <label for="srNo">SR No</label>
+                      <input type="text" id="srNo" name="srNo" [(ngModel)]="'S'+CompPtData.cndSR" disabled
+                        class="form-control" aria-label="tep">
+                    </div>
+                  </div>
+
+                  <div id="rnm" [ngClass]="(configType =='exec') ? 'col-3 textbox ':'col-3 textbox pr-0'">
+                    <div class="form-group">
+                      <label for="rnm">Recruiter Name</label>
+                      <input type="text" id="rnm" name="rnm" [(ngModel)]="CompPtData.recruiter" disabled
+                        class="form-control" aria-label="tep">
+                    </div>
+                  </div>
+                  <div id="mal" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="mal">MAL</label>
+                      <input type="text" id="mal" name="mal" [(ngModel)]="CompPtData.cndMAL" disabled
+                        class="form-control" aria-label="MAL">
+                    </div>
+                  </div>
+                  <div id="Zone" *ngIf="configType=='exec'" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="zone">Zone</label>
+                      <input type="text" id="zone" name="zone" [(ngModel)]="CompPtData.proposedzone" disabled
+                        class="form-control" aria-label="ZoneLabel">
+                    </div>
+                  </div>
+                  <div id="operatingGroup" *ngIf="configType=='exec'" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="operatingGroup">Operating Group</label>
+                      <input type="text" id="operatingGroup" name="OperatingGroup"
+                        [(ngModel)]="CompPtData.Operatinggroup" disabled class="form-control"
+                        aria-label="OperatingGroupLabel">
+                    </div>
+                  </div>
+                  <div id="Businessline" *ngIf="configType=='exec'" class="col-3 textbox">
+                    <div class="form-group">
+                      <label for="Businessline">Business line</label>
+                      <input type="text" id="Businessline" name="Businessline" [(ngModel)]="CompPtData.businessline"
+                        disabled class="form-control" aria-label="BusinesslineLabel">
+                    </div>
+                  </div>
+
+                  <div id="dateOfJoining" class="col-3 textbox pr-0">
+                    <div class="form-group">
+                      <label for="dateOfJoining">Date of Joining</label>
+                      <kendo-datepicker name="dateOfJoining" id="dateOfJoining" [min]="minDate" #joiningDate="ngModel"
+                        class="form-control date-control" [format]="'dd/MM/yyyy'" placeholder="dd-mm-yyyy"
+                        aria-label="Date of Joining" [disabled]="IsFormLoadDesabled"
+                        [ngClass]="{'error-field':(joiningDate.touched || confFitmentForm.submitted) && joiningDate.invalid}"
+                        [(ngModel)]="CompPtData.cndDOJ" required (keydown)="restrictDate()">
+                      </kendo-datepicker>
+                      <div *ngIf="(joiningDate.touched || confFitmentForm.submitted) && joiningDate.invalid"
+                        class="col-12 no-padding error-message">
+                        <div *ngIf="joiningDate.errors?.required">Required</div>
+                        <div *ngIf="CompPtData.cndDOJ < minDate && CompPtData.cndDOJ != null">Joining Date cannot be in the past.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="InternationalWorker"
+                    [ngClass]="(configType =='lateral') ? 'col-3 textbox ':'col-3 textbox pr-0'">
+                    <div class="form-group">
+                      <label for="InternationalWorker">International Worker</label>
+                      <input type="text" id="InternationalWorker" name="InternationalWorker"
+                        [(ngModel)]="CompPtData.InternationalWorker" disabled class="form-control"
+                        aria-label="InternationalWorker" disabled>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4" id="headingSC">
+            <h4 class="card-subtitle card-subtitle-fitment text-muted accord collapsed" data-toggle="collapse"
+              data-target="#collapseSC" aria-expanded="false" aria-controls="collapseSC">
+              Salary Components
+            </h4>
+          </div>
+          <hr class="style7">
+          <div id="collapseSC" class="collapse" aria-labelledby="headingSC">
+            <div class="card-body pb-0">
+              <div class="row">
+
+                <div id="fixedPayLabel" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="fixedPayLabel">Total Fixed Pay</label>
+                    <input type="text" id="fixedPayLabel" name="fixedPayLabel"
+                      [value]="CompPtData.compensationDetails.totalFixedPay" class="form-control" aria-label="fixedPay"
+                      disabled>
+                  </div>
+                </div>
+
+                <div id="varpay" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="varpay">Variable Pay Potential</label>
+                    <input type="text" id="varpay" name="varpay" [value]="CompPtData.compensationDetails.variableYearly"
+                      class="form-control" aria-label="tep" disabled>
+                  </div>
+                </div>
+
+                <div id="totaler" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label name="totaler">Total Earning Potential</label>
+                    <input type="text" id="totaler" name="totaler"
+                      [value]="CompPtData.compensationDetails.totalearningpotential" class="form-control"
+                      aria-label="tcc" disabled>
+                  </div>
+                </div>
+
+                <div id="minp" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="minp">Min Variable Pay %</label>
+                    <input type="text" id="minp" name="minp" [value]="CompPtData.PTVpay.minVpay| number" class="form-control"
+                      aria-label="min" disabled>
+                  </div>
+                </div>
+
+                <div id="maxp" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="maxp">Max Variable Pay %</label>
+                    <input type="text" id="maxp" name="maxp" [value]="CompPtData.PTVpay.maxVpay| number" class="form-control"
+                      aria-label="tep" disabled>
+                  </div>
+                </div>
+
+                <div id="minp" *ngIf="configType=='lateral'" class="col-2 textbox pr-0"> 
+                </div>
+
+                <div id="mini" *ngIf="configType=='exec'" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="mini">Min IPB(%)</label>
+                    <input type="text" id="mini" name="mini" [value]="CompPtData.PTVpay.MinIpb" class="form-control"
+                      aria-label="tep" disabled>
+                  </div>
+                </div>
+                <div id="maxi" *ngIf="configType=='exec'" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="maxi">Max IPB(%)</label>
+                    <input type="text" id="maxi" name="maxi" [value]="CompPtData.PTVpay.MaxIpb" class="form-control"
+                      aria-label="tep" disabled>
+                  </div>
+                </div>
+                <div id="ming" *ngIf="configType=='exec'" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="ming">Min GAB(%)</label>
+                    <input type="text" id="ming" name="ming" [value]="CompPtData.PTVpay.MinGab" class="form-control"
+                      aria-label="tep" disabled>
+                  </div>
+                </div>
+                <div id="maxg" *ngIf="configType=='exec'" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="maxg">Max GAB(%)</label>
+                    <input type="text" id="maxg" name="maxg" [value]="CompPtData.PTVpay.MaxGab" class="form-control"
+                      aria-label="tep" disabled>
+                  </div>
+                </div>
+
+                <div id="nightcheck" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="nightcheck">Night Shift Allowance</label>
+                    <input type="checkbox" id="nightcheck" name="nightcheck" class="checkbox"
+                      [checked]="(CompPtData.compensationDetails.nightShiftAllowanceYN === 'Y') ? true : false"
+                      [(ngModel)]="ngMonightShiftAllowanceYN" [disabled]="IsFormLoadDesabled">
+                  </div>
+                </div>
+
+                <div id="transitcheck" class="col-4 textbox pr-0">
+                  <div class="form-group">
+                    <label for="transitcheck">Transit Accommodation Required</label>
+                    <input type="checkbox" [disabled]="IsFormLoadDesabled"
+                      [checked]="(CompPtData.compensationDetails.transitAccomodationReqYN === 'Y') ? true : false"
+                      [(ngModel)]="ngMotransitAccomodationReqYN" id="transitcheck" name="transitcheck" class="checkbox">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4" id="headingRD">
+            <h4 class="card-subtitle card-subtitle-fitment text-muted accord collapsed" data-toggle="collapse"
+              data-target="#collapseRD" aria-expanded="false" aria-controls="collapseRD">
+              Other Business Allowances 
+            </h4>
+          </div>
+          <hr class="style7">
+          <div id="collapseRD" class="collapse" aria-labelledby="headingRD">
+
+            <div class="card-body pb-0">
+              <div class="row">
+                
+                <div id="eligibleJb" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="eligibleJb">Eligible for Joining Bonus</label>
+                    <input type="checkbox" class="checkbox" name="eligibleJb" id="eligibleJb" value="eliForJB" [disabled]="IsFormLoadDesabled"
+                    [checked]="ngMojoiningbonusEligibleYN"
+                      #eligible="ngModel" [(ngModel)]="ngMojoiningbonusEligibleYN" (change)="onCheckboxEJB($event.target.checked)"><!--   required> -->
+                      <!-- [checked]="(CompPtData.compensationDetails.joiningbonusEligibleYN === 'Y') ? true : false" -->
+                  </div>
+                </div>
+
+                <div id="lock" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="lock">Lock-In Period (in months)</label>
+                    <select class="form-control" id="lock" name="lock" (change)="onChangeLckInPeriod($event.target.selectedIndex)"
+                      [(ngModel)]="ngMolockInPeriodValue" #lockInPeriod="ngModel" [disabled]="!ngMojoiningbonusEligibleYN || IsFormLoadDesabled" 
+                      [ngClass]="{'error-field':(lockInPeriod.touched || confFitmentForm.submitted) && lockInPeriod.invalid}" [required]="ngMojoiningbonusEligibleYN">
+                      <option [ngValue]="null" >Select</option>
+                      <option [value]="idProof.lockInPeriodValue" *ngFor="let idProof of LockInPeriodArray">{{idProof.lockInPeriodValue}}</option>
+                    </select>
+                    <!-- [disabled]="eligible.invalid || IsFormLoadDesabled" -->
+                    <div *ngIf="(lockInPeriod.touched || confFitmentForm.submitted) && lockInPeriod.invalid"
+                      class="col-md-12 no-padding error-message">
+                      <div *ngIf="lockInPeriod.errors?.required">Required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="bonus" class="col-2 textbox ">
+                  <div class="form-group">
+                    <label for="bonus">Joining Bonus</label>
+                    <input type="number"  min="0" id="bonus" name="bonus" class="form-control" aria-label="jbonus"
+                      #joiningBonus="ngModel" [(ngModel)]="ngMojoiningBonus" (change)="toggle()"
+                      [ngClass]="{'error-field':(joiningBonus.touched || confFitmentForm.submitted) && joiningBonus.invalid}"
+                      [disabled]="!ngMojoiningbonusEligibleYN || IsFormLoadDesabled" [required]="ngMojoiningbonusEligibleYN" (keydown)="restrictAlphabate($event)"><!-- [value]="CompPtData.compensationDetails.joiningBonus" -->
+                    <div *ngIf="(joiningBonus.touched || confFitmentForm.submitted) && joiningBonus.invalid" class="col-md-12 no-padding error-message">
+                      <div *ngIf="joiningBonus.errors?.required">Required</div>
+                    </div>
+                    <!-- [disabled]="eligible.invalid || IsFormLoadDesabled" -->
+                    <!-- <div *ngIf="(lockInPeriod.valid )" class="col-md-12 no-padding error-message">
+                      <div *ngIf="joiningBonus.errors?.required">
+                        <div> Joining bonus should be greater than or equal to {{minJB}} </div>
+                      </div>
+                    </div> -->
+                        <!-- <div *ngFor="let minJB of LockInPeriodArray"> Joining bonus should be greater than or equal to {{minJB.minJoiningBonus}} </div> -->
+                        <!-- <div> Joining bonus should be greater than {{minJB}} </div> -->
+                  </div>
+                </div>
+
+                <div id="paidClient" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="paidByClient">Joining Bonus paid by Client</label>
+                    <input type="checkbox" [(ngModel)]="ngMojoiningBonusYN" class="checkbox" name="paidClient" id="paidClient" value="client"
+                      [disabled]="!ngMojoiningbonusEligibleYN || IsFormLoadDesabled" [checked]="ngMojoiningBonusYN"> <!-- [checked]="eligible.valid"  [checked]="(CompPtData.compensationDetails.joiningBonusYN === 'Y') ? true : false"-->
+                      <!-- [disabled]="eligible.invalid || IsFormLoadDesabled" -->
+                  </div>
+                </div>
+
+                <div id="JBplan" class="col-2 textbox pr-4">
+                  <div class="form-group">
+                    <label for="jbPlan">Joining Bonus Payment Plan</label>
+                    <select class="form-control" name="PaymentPlan" id="jbPlan" (change)="onChangeJBPayPlan($event)"
+                      [(ngModel)]="ngMojoiningBonusPaymentPlan" #jbPaymentPlan="ngModel" [required]="ngMojoiningbonusEligibleYN"
+                      [disabled]="!ngMojoiningbonusEligibleYN || lockInPeriod.invalid || IsFormLoadDesabled">
+                      <option [ngValue]="null">Select</option>
+                      <option value="One Time Payment on 1st Month">One Time Payment on 1st Month</option>
+                      <option value="Partial Payout">Partial Payout</option>
+                      <option value="One Time Payout after {{ngMolockInPeriodValue}} Months">One Time Payout after {{ngMolockInPeriodValue}} Months <!-- {{CompPtData.compensationDetails.joiningBonusDuration}} Months -->
+                      </option>
+                    </select>
+                    <!-- [disabled]="eligible.invalid || IsFormLoadDesabled || disableJBPayPln" -->
+                    <div *ngIf="(jbPaymentPlan.touched || confFitmentForm.submitted) && jbPaymentPlan.invalid" class="col-md-12 no-padding error-message">
+                      <div *ngIf="jbPaymentPlan.errors?.required">Required</div> <!-- <div *ngIf="ngMojoiningBonusPaymentPlan === 0">Required</div> -->
+                    </div>
+                  </div>
+                </div>
+
+
+                <div id="jbComment" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="jbComment">Joining Bonus Comments</label>
+                    <textarea class="form-control textarea_height" aria-label="jcomm" name="jbComment" id="jbComment"
+                      [(ngModel)]="ngMojoiningBonusComments" #jbonusComment="ngModel"
+                      [value]="CompPtData.compensationDetails.joiningBonusComments"
+                      [ngClass]="{'error-field':(jbonusComment.touched || confFitmentForm.submitted) && jbonusComment.invalid}"
+                      [required]="ngMojoiningbonusEligibleYN" [disabled]="!ngMojoiningbonusEligibleYN || lockInPeriod.invalid || IsFormLoadDesabled">
+                      <!-- required [disabled]="eligible.invalid && (lockInPeriod.invalid || IsFormLoadDesabled || disableJBcomments)"> -->
+                    </textarea>
+                    <div *ngIf="(jbonusComment.touched || confFitmentForm.submitted) && jbonusComment.invalid"
+                      class="col-md-12 no-padding error-message">
+                      <div *ngIf="jbonusComment.errors?.required">Required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="eligibleExpense" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="eligibleExpense">Eligible for Relocation Expense</label>
+                    <input type="checkbox" class="checkbox" name="eligibleXpense" id="eligibleExpense"
+                      #eligibleReExpense="ngModel" [disabled]="IsFormLoadDesabled"
+                      [checked]="(CompPtData.compensationDetails.EligibleRelocExpYN === 'Y') ? true : false"
+                      [(ngModel)]="ngMoEligibleRelocExpYN" (change)="onChangeReXPaidClnt()">
+                  </div> 
+                </div>
+
+                <div id="rExpense" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="rExpense">Relocation Expense</label>
+                    <input type="number" class="form-control" aria-label="tcc" name="rExpense" id="rExpense"
+                      [(ngModel)]="ngMorelocationExpenses" #relocationExpense="ngModel" disabled>
+                  </div>
+                </div>
+
+                <div id="expenseClient" class="col-4 textbox pr-0">
+                  <div class="form-group" *ngIf="showReExpensePaidClnt">
+                    <label for="expenseClient">Relocation Expense paid by client</label>
+                    <input type="checkbox" class="checkbox" name="xpenseClient" id="expenseClient"
+                      [disabled]="IsFormLoadDesabled"
+                      [checked]="(CompPtData.compensationDetails.relocationExpensesYN === 'Y') ? true : false"
+                      [(ngModel)]="ngMorelocationExpensesYN">
+                  </div>
+                </div>
+
+                <!-- <div id="expenseClient" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="expenseClient">Relocation Expense paid by Client</label>
+                    <input type="checkbox" class="checkbox" name="xpenseClient" id="expenseClient"
+                      #expensePaidClient="ngModel" [disabled]="IsFormLoadDesabled"
+                      [checked]="(CompPtData.compensationDetails.relocationExpensesYN === 'Y') ? true : false"
+                      [(ngModel)]="ngMorelocationExpensesYN" (click)="resetRelocationField()"> -->
+                      <!-- required> -->
+                      <!-- [ngClass]="{'error-field':(expensePaidClient.touched || confFitmentForm.submitted) && expensePaidClient.invalid }" -->
+                      <!-- <div class="col-md-12 no-padding error-message">
+                        <div *ngIf="expensePaidClient.errors?.required">Required</div>
+                      </div> -->
+                  <!-- </div>
+                </div>
+
+                <div id="rExpense" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="rExpense">Relocation Expense</label>
+                    <input type="number"  min="0" class="form-control" aria-label="tcc" name="rExpense"
+                      id="rExpense" [(ngModel)]="ngMorelocationExpenses" [disabled]="!isReExEnabled || IsFormLoadDesabled"
+                      [value]="CompPtData.compensationDetails.relocationExpenses" #relocationExpense="ngModel"
+                      [ngClass]="{'error-field':(relocationExpense.touched || confFitmentForm.submitted) && relocationExpense.invalid }"
+                      [required]="ngMorelocationExpensesYN" (keydown)="restrictAlphabate($event)" > -->
+                       <!-- pattern="^([1-9]{8})$" -->
+                    <!-- <div class="col-md-12 no-padding error-message">  -->
+                      <!-- *ngIf="ngMorelocationExpensesYN"  expensePaidClient.valid -->
+                      <!-- <div *ngIf="relocationExpense.errors?.required">Required</div>
+                    </div>
+                  </div>
+                </div> -->
+
+
+                <div id="fpm" class="col-2 textbox pr-0">
+                  <div class="form-group" *ngIf="configType=='exec' && jbPaymentPlan.value==='Partial Payout'"> <!-- *ngIf="showPaymentMonth" -->
+                    <label for="fpm">First Payment Month</label> 
+                    <select class="form-control" id="fpm" name="fpm" [(ngModel)]="ngMoFirstPaymentPlan" [disabled]="IsFormLoadDesabled"
+                      #firstPayMonth="ngModel" [required]="jbPaymentPlan.value==='Partial Payout'">
+                      <option [ngValue]="null">Select</option>
+                      <option [value]="idProof" *ngFor="let idProof of firstPaymentMonthArray">{{idProof}}</option>
+                    </select>
+                    <div class="col-md-12 no-padding error-message">
+                      <!-- <div *ngIf="firstPayMonth.errors?.required">Required</div> --> <div *ngIf="jbPaymentPlan.value==='Partial Payout' && firstPayMonth.invalid">Required</div>
+                    </div>
+                    <!-- <div *ngIf="ngMojoiningBonusPaymentPlan==='Partial Payout'" class="col-md-12 no-padding error-message">
+                      <div *ngIf="firstPayMonth.errors?.required">Required</div>
+                    </div> -->
+                  </div>
+                </div>
+
+                <div id="lpm" class="col-2 textbox pr-0">
+                  <div class="form-group" *ngIf="configType=='exec' && jbPaymentPlan.value==='Partial Payout'"> <!-- *ngIf="showPaymentMonth" -->
+                    <label for="lpm">Last Payment Month</label> 
+                    <select class="form-control" id="lpm" name="lpm" [(ngModel)]="ngMoLastPaymentPlan" (change)="onChangeLastPayMnth()" [disabled]="IsFormLoadDesabled"
+                      #lastPayMonth="ngModel" [required]="jbPaymentPlan.value==='Partial Payout'">
+                      <!-- CompPtData.compensationDetails.LastPaymentPlan -->
+                      <option [ngValue]="null">Select</option>
+                      <option [value]="idProof"
+                        *ngFor="let idProof of firstPaymentMonthArray | paymentMonthFilter:ngMoFirstPaymentPlan">
+                        {{idProof}}</option>
+                    </select>
+                    <div class="col-md-12 no-padding error-message">
+                      <!-- <div *ngIf="lastPayMonth.errors?.required">Required</div> --> <div *ngIf="jbPaymentPlan.value==='Partial Payout Payout' && lastPayMonth.invalid">Required</div>
+                    </div>
+                    <!-- <div *ngIf="ngMojoiningBonusPaymentPlan==='Partial Payout'" class="col-md-12 no-padding error-message">
+                      <div *ngIf="lastPayMonth.errors?.required">Required</div>
+                    </div> -->
+                  </div>
+                </div>
+
+                <div id="nBuyout" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="npBuyout">Notice Period Buyout</label>
+                    <input type="checkbox" class="checkbox" name="npBuyout" #noticebuyout="ngModel" [(ngModel)]="ngMonoticePeriodBuyoutYN" [disabled]="IsFormLoadDesabled"
+                      id="npBuyout" [checked]="(CompPtData.compensationDetails.noticePeriodBuyoutYN === 'Y') ? true : false" (change)="onCheckboxnpPBCYN($event.target.checked)"> <!-- [checked]="noticebuyoutYN.valid" -->
+                  </div>
+                </div>
+
+                <div id="npBuyClient" class="col-2 textbox pr-3">
+                  <div class="form-group">
+                    <label for="npBuyClient">Notice Period Buyout paid by Client</label>
+                    <input type="checkbox" class="checkbox" name="npBuyClient" id="npBuyClient" #noticebuyoutYN="ngModel" [(ngModel)]="ngMonoticePeriodBuyoutPBCYN" 
+                      [disabled]="IsFormLoadDesabled" [checked]="ngMonoticePeriodBuyoutPBCYN" > <!-- [checked]="(CompPtData.compensationDetails.noticePeriodBuyoutPBYN === 'Y') ? true : false" -->
+                    </div>
+                </div>
+
+                <div *ngIf="configType=='exec' && CompPtData.cndLevel <= 7" id="rsuClient" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="rsuClient">RSU paid by Client</label>
+                    <input type="checkbox" class="checkbox" name="rsuClient" id="rsuClient" #rsuPaidClient="ngModel"
+                      [checked]="(CompPtData.compensationDetails.rsuYN === 'Y') ? true : false" [disabled]="IsFormLoadDesabled"
+                      [(ngModel)]="ngMorsuYN" (click)="resetRsuField()" 
+                    >
+                      <!-- required> -->
+                      <!-- [ngClass]="{'error-field':(rsuPaidClient.touched || confFitmentForm.submitted) && rsuPaidClient.invalid }" -->
+                      <!-- <div class="col-md-12 no-padding error-message">
+                        <div *ngIf="rsuPaidClient.errors?.required">Required</div>
+                      </div> -->
+                  </div>
+                </div>
+                <div *ngIf="configType=='exec' && CompPtData.cndLevel <= 7" id="rsu" class="col-2 textbox pr-0">
+                  <div class="form-group">
+                    <label for="Price">RSU in USD</label>
+                    <input type="number" class="form-control" aria-label="rsuinusd" min="0" id="Price" name= "Price" step=".01" [disabled]="!ngMorsuYN || IsFormLoadDesabled"
+                      [(ngModel)]="ngMorsu" [value]="CompPtData.compensationDetails.rsu" #rsuInUsd="ngModel" 
+                      [ngClass]="{'error-field':(rsuInUsd.touched || confFitmentForm.submitted) && rsuInUsd.invalid }"
+                      [required]="ngMorsuYN" #eleRef (keypress)="twoDigitDecimel($event, eleRef)" (keydown)="restrictAlphabate($event)">
+                      <!-- [disabled]="!isRsuEnabled || IsFormLoadDesabled" -->
+                    <div  class="col-md-12 no-padding error-message"> <!-- *ngIf="ngMorsuYN" -->
+                      <div *ngIf="rsuInUsd.errors?.required">Required</div>
+                      <div *ngIf="ngMorsu === 0">Kindly enter a value more than 0</div> 
+                    </div>
+                  </div>
+                </div>
+                <!-- <h2 style="color:blueviolet">{{confFitmentForm.valid}}</h2> -->
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="systemShow" class="card-body pb-0">
+            <h3 class="red_text">System Approved</h3>
+          </div>
+          <div *ngIf="JBShow" class="card-body pb-0">
+            <h3 class="red_text">JB Approval Required</h3>
+            <div class="row">
+              <div class="col-6">
+                <div class="row textbox">
+                  <div class="col-4">
+                    <label>JB Approver</label>
+                  </div>
+                  <div class="col-6">
+                    <kendo-combobox [data]="approversList" 
+                                    [valueField]="'App_ID'" 
+                                    [textField]="'App_Name'"
+                                    (filterChange)="onAutoCompleteChange($event)" 
+                                    (valueChange)="onValueSelection($event)"
+                                    [loading]="isDataLoading" 
+                                    [placeholder]="'Search Approver...'" 
+                                    [allowCustom]="false"
+                                    [filterable]="true" class="form-control combobox-element" 
+                                    [disabled]="addedApprover.length >= 3 || IsFormLoadDesabled"
+                                    ngDefaultControl
+                                    >
+                    </kendo-combobox>
+                  </div>
+                  <div class="col-2 searchbtn-add-row">
+                    <button style="margin-left: -5px" (click)="assignApprover()" [disabled]="addedApprover.length >= 3 || IsFormLoadDesabled">Assign</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 assignee-list">
+                <mat-chip-list #chipList aria-label="Approverselection">
+                  <mat-chip *ngFor="let data of addedApprover">
+                    {{data.App_Name}}
+                    <img class="delrow-img" (click)="removeApprover(data)"
+                      src="../../../../assets/img/CloseButton.svg" />
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- end -->
+
+          <div class="card-body pb-0">
+            <div class="row searchbtn-add-row">
+              <div id="tcc" class="col-12 ">
+                <button type="button" (click)="SaveorSbmitPT('Save')" class="search-btn" [disabled]="saveBtnEnable">Save</button>
+                <button type="submit" (click)="SaveorSbmitPT('Submit')" class="search-btn" [disabled]="saveBtnEnable">Save & Submit</button>
+                <button class="search-btn" (click)="sendEmailToCandidate()" [disabled]="isSendMailEnabled">Send Mail to Candidate</button> 
+                <button class="search-btn" (click)="onCreateNew()" [disabled]="isCreateNEwEnabled">Create
+                  New Version</button>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="showApprovalStatus">
+            <div class="mt-4" id="headingAS">
+              <h4 class="card-subtitle card-subtitle-fitment text-muted accord collapsed" data-toggle="collapse" data-target="#collapseAS"
+                aria-expanded="false" aria-controls="collapseAS">
+                Approval Status
+              </h4>
+            </div>
+            <hr class="style7">
+            <div id="collapseAS" class="collapse" aria-labelledby="headingAS">
+              <div class="card-body pb-0">
+                <div class="row">
+                  <app-reusablekendo [columnDefs]="columnApprStatus" [gridData]="CompPtData.cndapprovalstatus" [showCheckbox]="false" [pageSize]=10
+                    [gridHeight]=245 [pageable]="true" [navigable]="true">
+                  </app-reusablekendo>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </form>
+
+
+  </div>
+</div>
+</xd-component-container>

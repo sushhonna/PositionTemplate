@@ -1,0 +1,324 @@
+@import "../../../../../theme/theme-variables";
+
+::ng-deep .fitment-search-container {
+  margin: 10px auto; //Local --> 2% 2%; //Stage ---> 10px auto
+  width: 98%; //Local --> 80%; //Stage ---> 98%
+  background: #fff;
+  box-sizing: border-box;
+  // css start
+
+  .validaions-msg
+  {
+    display: grid;
+      margin-left: 3%;
+      margin-top: 1%;
+  }
+  .validation-lbl{
+    margin-right: 10px;
+      font-weight: normal;
+      font-size: 16px !important;
+      color: red !important;
+  }
+  .error-message {
+    width: 100%;
+    // margin-left: -15px;
+    font-size: 11px;
+    color: red;
+  }
+
+  label {
+    margin-right: 10px;
+    font-weight: normal;
+    font-size: 12px;
+
+    .required {
+      color: red;
+      margin-left: 2px;
+    }
+  }
+
+  .red_text {
+    margin-top: 10px;
+    color: red !important;
+  }
+
+  // .textarea_height{
+  //   height: 30px !important;
+  // }
+  // sushma css end
+
+  .serach-result-row {
+    width: 97%;
+    margin-left: 15px;
+    display: inline-grid;
+  }
+
+  .fitment-search-card {
+    .card-header {
+      font-size: 20px;
+      color: $btn-bg-orange;
+      font-weight: 700;
+  
+      .cross-close-img {
+        width: 16px;
+        padding: 1px;
+        float: right;
+        margin: 10px 5px 0px 0;
+        cursor: pointer;
+      }
+    }
+
+    .candid-lbl {
+      float: left;
+    }
+    .candid-lblversion {
+      float: right;
+    }
+
+
+
+
+    .k-grid {
+      border-color: rgba(0, 0, 0, 0.08);
+      color: #656565;
+      background-color: #DCDCDC;
+      background-clip: padding-box;
+      overflow-x: auto;
+      width: 100%;
+      max-height: 300px;
+      padding: 12px;
+    }
+
+    .k-grid td {
+      padding: 6px;
+
+      background-color: white;
+      border-bottom: 5px solid lightgrey;
+      padding-left: 14px;
+      font-size: 12px;
+      border-left: 0px;
+    }
+
+    .k-grid th {
+      padding: 1;
+      border-style: hidden;
+      ;
+      font-size: 12px;
+
+    }
+
+    th.k-header {
+      color: black;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .k-grid-header-wrap {
+      background-color: #DCDCDC;
+
+    }
+
+    .k-grid-header {
+      background-color: #DCDCDC;
+    }
+
+    .k-grid tr {
+      background-color: #DCDCDC;
+    }
+
+    .k-grid tr.k-state-selected>td {
+      background: white;
+    }
+
+
+    .version-lbl {
+      height: 30px;
+    }
+
+    .card-subtitle-fitment {
+      margin-top: 1.949rem !important;
+    }
+
+
+    .candid-value-lbl {
+      color: #e2574c;
+    }
+
+    .textbox {
+      input {
+        font-size: 14px !important;
+        width: 100%;
+        border-color: #ccc;
+        height: 30px;
+        border-radius: 5px;
+        color: #555;
+      }
+
+      label {
+        margin-right: 10px;
+        font-weight: normal;
+        font-size: 12px;
+
+        .required {
+          color: red;
+          margin-left: 2px;
+        }
+      }
+
+      select {
+        width: 100%;
+        height: 30px;
+        border-color: $border-gray;
+        border-radius: 5px;
+        font-size: 12px;
+        color: $grey;
+
+        option {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .card-title {
+      font-weight: bold;
+    }
+
+    hr.style7 {
+      border-top: 1px solid $grey-10;
+      border-bottom: 1px solid #fff;
+    }
+
+  }
+
+  //-------------------------------ZEE START--------------------------------------------
+
+  .accord {
+    background: url('assets/img/AccordianUpArrow.svg') no-repeat calc(100% - 10px) center;
+    background-size: 28px;
+    cursor: pointer;
+    /* font-size: 18px;
+    color: $grey-60; */
+
+    &.collapsed {
+      background-image: url('assets/img/AccordianDownArrow.svg');
+      color: $grey-60;
+    }
+  }
+
+  .assignee-list {
+    border: 1px solid lightgrey;
+    padding-top: 3px;
+    margin: 0% 0% 2% 0%;
+    border-radius: 7px;
+    height: 40px; //55px  ;
+    max-height: 60px;
+    overflow-y: auto;
+
+    .delrow-img {
+      width: 25px;
+      height: 10px;
+      cursor: pointer;
+    }
+
+    .mat-standard-chip {
+      background-color: #ededed;
+    }
+  }
+
+  .combobox-element {
+    border: 1px solid #e8e9ec;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 14px;
+    color: #6a6a6a;
+
+    .k-i-arrow-s::before {
+      font-family: FontAwesome;
+      content: "";
+    }
+  }
+
+  .k-combobox .k-select {
+    background-color: transparent;
+    background-image: none;
+  }
+
+  //-------------------------------ZEE END--------------------------------------------
+
+
+}
+
+.containercheckbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox {
+  width: 19px !important;
+  height: 19px !important;
+}
+
+.searchbtn-add-row {
+
+  button {
+    font-size: 14px;
+    background-color: #e2574c;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 1%;
+    border: 0;
+    outline: 0;
+    height: 33px;
+    margin-left: 5px;
+    padding-right: 12px;
+    padding-left: 12px;
+
+
+    button:hover,
+    button:active,
+    button:focus {
+      background: #e2574c !important;
+      color: #fff !important;
+    }
+  }
+
+  button[disabled] {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+  }
+}
+
+/* .fitment-search-card {
+  .card-header {
+    font-size: 20px;
+    color: $btn-bg-orange;
+    font-weight: 700;
+
+    .cross-close-img {
+      width: 16px;
+      padding: 1px;
+      float: right;
+      margin: 10px 5px 0px 0;
+      cursor: pointer;
+    }
+  }
+} */
+
+.kendo-custom-dropdown {
+  font-size: 12px !important;
+  height: 34px;
+
+  &.k-dropdown {
+    .k-dropdown-wrap {
+      background-color: $white !important;
+    }
+  }
+
+}
